@@ -3,8 +3,9 @@
 // Constants
 const confirmMsgs = ["Done!", "You got it!", "Aye!", "Is that all?", "My job here is done.", "Gotcha!", "It wasn't hard.", "Got it! What's next?"]
 const actionMsgs = ["Copied for", "Affected", "Made it with", "Duplicated colors of"]
-const idleMsgs = ["No available objects", "Can\'t handle these objects", "Nothing to do. Check fills and strokes of objects"]
+const idleMsgs = ["No available objects", "Can\'t handle this", "Nothing to do. Check fills and strokes of objects", "Nothing to copy"]
 const nothingMsg = "Select something"
+const destinations = ["🔲 to stroke", "🔳 to fill"]
 
 // Variables
 let notification: NotificationHandler
@@ -16,7 +17,6 @@ figma.on("currentpagechange", abort);
 
 // Main + Elements Check
 figma.parameters.on("input", ({ query, result }: ParameterInputEvent) => {
-  const destinations = ['to stroke', 'to fill']
   result.setSuggestions(destinations.filter(s => s.includes(query)))
 })
 
@@ -37,7 +37,7 @@ figma.on("run", ({ parameters }: RunEvent) => {
 function copyColors(node, parameters: ParameterValues) {
   if ("fills" in node && "strokes" in node) {
     switch (parameters["destination"]) {
-      case "to stroke":
+      case destinations[0]:
         if (node.fills.length > 0) {
           node.strokeWeight = node.strokeWeight || 5
           node.strokeAlign = node.strokeAlign || "OUTSIDE"
@@ -46,7 +46,7 @@ function copyColors(node, parameters: ParameterValues) {
           count++
         }
         break;
-      case "to fill":
+      case destinations[1]:
         if (node.strokes.length > 0) {
           if (node.strokeStyleId !== "") node.fillStyleId = node.strokeStyleId
           else node.fills = node.strokes
