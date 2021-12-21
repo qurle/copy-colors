@@ -1,0 +1,16 @@
+{
+  "name": "Copy Colors",
+  "id": "1054919429022082530",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": [
+    "figma"
+  ],
+  "parameters": [
+    {
+      "name": "Copy to...",
+      "key": "destination",
+      "allowFreeform": false
+    }
+  ]
+}

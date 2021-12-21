@@ -1,0 +1,14 @@
+{
+  "name": "Copy-Colors",
+  "version": "1.0.0",
+  "description": "Apply same colors for fill and stroke",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "author": "Nick Qurle",
+  "license": "",
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.40.0"
+  }
+}
